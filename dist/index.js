@@ -15,8 +15,23 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
+// app.use((req, res, next) => {
+//   console.log(req.path, req.method);
+//   next();
+// });
 app.use((req, res, next) => {
-    console.log(req.path, req.method);
+    res.header("Access-Control-Allow-Origin", "*");
+    const allowedOrigins = [
+        "http://localhost:5173",
+        // here
+    ];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader("Access-Control-Allow-Origin", origin);
+    }
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-credentials", true);
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
     next();
 });
 // routes
