@@ -15,7 +15,7 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
-app.set("trust proxy", 1);
+app.set("trust proxy", true);
 // app.use((req, res, next) => {
 //   console.log(req.path, req.method);
 //   next();
@@ -25,6 +25,7 @@ app.use((req, res, next) => {
     const allowedOrigins = [
         "http://localhost:5173",
         "https://user-authentication-server.onrender.com",
+        "https://user-authentication-kappa.vercel.app",
         // here
     ];
     const origin = req.headers.origin;
