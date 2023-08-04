@@ -9,7 +9,7 @@ import { requireAuth } from "../middlewares/authentication";
 const router = Router();
 
 router.get("/profile", requireAuth, getUserProfile);
-router.patch("/profile", requireAuth, updateUserProfile);
+router.put("/profile", requireAuth, updateUserProfile);
 router.delete("/profile", requireAuth, deleteUserAccount);
 
 export default router;

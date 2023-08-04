@@ -23,6 +23,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     const allowedOrigins = [
         "http://localhost:5173",
+        "https://user-authentication-server.onrender.com",
         // here
     ];
     const origin = req.headers.origin;
