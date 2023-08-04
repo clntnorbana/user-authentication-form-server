@@ -28,7 +28,7 @@ app.use((req, res, next) => {
     "https://user-authentication-kappa.vercel.app",
     // here
   ];
-  const origin = req.headers.origin;
+  const origin = req.headers.origin as OrientationType;
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
@@ -36,7 +36,7 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
-  res.header("Access-Control-Allow-credentials", true);
+  res.header("Access-Control-Allow-credentials", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
   next();
 });
