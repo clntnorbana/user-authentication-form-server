@@ -20,21 +20,31 @@ app.set("trust proxy", true);
 //   console.log(req.path, req.method);
 //   next();
 // });
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   const allowedOrigins = [
+//     "http://localhost:5173",
+//     "https://user-authentication-server.onrender.com",
+//     "https://user-authentication-kappa.vercel.app",
+//     // here
+//   ];
+//   const origin = req.headers.origin as OrientationType;
+//   if (allowedOrigins.includes(origin)) {
+//     res.setHeader("Access-Control-Allow-Origin", origin);
+//   }
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   );
+//   res.header("Access-Control-Allow-credentials", "*");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
+//   next();
+// })
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    const allowedOrigins = [
-        "http://localhost:5173",
-        "https://user-authentication-server.onrender.com",
-        "https://user-authentication-kappa.vercel.app",
-        // here
-    ];
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-        res.setHeader("Access-Control-Allow-Origin", origin);
-    }
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    res.header("Access-Control-Allow-credentials", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
+    res.setHeader("Access-Control-Allow-Origin", req.header("Origin") || "*");
+    res.removeHeader("x-powered-by");
+    res.setHeader("Access-Control-Allow-Origin", req.method);
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     next();
 });
 // routes
