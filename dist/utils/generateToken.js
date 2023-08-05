@@ -6,13 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const generateToken = (res, userId) => {
     const token = jsonwebtoken_1.default.sign({ userId }, process.env.JWT_SECRET, {
-        expiresIn: "1d",
+        expiresIn: "1h",
     });
     res.cookie("jwt", token, {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        maxAge: 1 * 24 * 60 * 60 * 1000,
+        maxAge: 3600000,
         domain: ".vercel.app",
     });
 };

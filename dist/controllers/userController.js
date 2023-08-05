@@ -74,10 +74,7 @@ const deleteUserAccount = (req, res) => __awaiter(void 0, void 0, void 0, functi
     try {
         const user = yield userModel_1.default.findById(req.userData._id);
         yield (user === null || user === void 0 ? void 0 : user.deleteOne());
-        res.cookie("jwt", "", {
-            httpOnly: true,
-            expires: new Date(0),
-        });
+        res.clearCookie("jwt");
         res.status(200).json({ message: "Account deleted" });
     }
     catch (error) {

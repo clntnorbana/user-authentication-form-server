@@ -69,10 +69,7 @@ export const deleteUserAccount = async (req: Request, res: Response) => {
 
     await user?.deleteOne();
 
-    res.cookie("jwt", "", {
-      httpOnly: true,
-      expires: new Date(0),
-    });
+    res.clearCookie("jwt");
 
     res.status(200).json({ message: "Account deleted" });
   } catch (error) {

@@ -80,10 +80,7 @@ exports.login = login;
 // logout user
 const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.cookie("jwt", "", {
-            httpOnly: true,
-            expires: new Date(0),
-        });
+        res.clearCookie("jwt");
         res.status(200).json({ message: "logged out" });
     }
     catch (error) {
